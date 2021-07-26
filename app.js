@@ -1,8 +1,15 @@
 const express = require("express");
-const cors = require("cors");
-const path = require("path");
 
-// required Routes
+// Database
+const db = require("./db/models");
+
+//Routes
+const userRoutes = require("./routes/users");
+const chatRoutes = require("./routes/chats");
+
+const cors = require("cors");
+
+const path = require("path");
 
 const app = express();
 
@@ -13,13 +20,13 @@ app.use(cors());
 // app.use(passport.initialize());
 // passport.use(localStrategy);
 
-// Routes
-
 app.use(express.json());
 
-app.use("/media", express.static("media"));
+// Routes
+// app.use(userRoutes);
+app.use("/chats", chatRoutes);
 
-app.use("/media", express.static("media"));
+// app.use("/media", express.static("media"));
 
 app.use((req, res, next) => {
   const err = new Error("Path Not Found");
@@ -35,6 +42,7 @@ app.use((err, req, res, next) => {
 });
 
 const run = async () => {
+  // await db.sequelize.sync();
   await app.listen(8000, () => {
     console.log("The application is running on localhost:8000");
   });
