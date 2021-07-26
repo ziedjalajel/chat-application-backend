@@ -28,7 +28,6 @@ const {Profile}= require("../db/models");
      if (req.file) {
        req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
      }
-    //  req.body.profileId= req.profile.id
          await req.profile.update(req.body);
          res.status(201).json(req.profile);
  
