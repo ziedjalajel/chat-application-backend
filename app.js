@@ -6,7 +6,7 @@ const db = require("./db/models");
 //Routes
 const userRoutes = require("./routes/users");
 const chatRoutes = require("./routes/chats");
-
+let profileRouter = require ("./routes/profiles")
 const messageRoutes = require("./routes/messages");
 
 const cors = require("cors");
@@ -23,6 +23,7 @@ app.use(cors());
 // passport.use(localStrategy);
 
 app.use(express.json());
+app.use("/profile", profileRouter)
 
 // Routes
 // app.use(userRoutes);
