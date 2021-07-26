@@ -7,6 +7,8 @@ const db = require("./db/models");
 const userRoutes = require("./routes/users");
 const chatRoutes = require("./routes/chats");
 
+const messageRoutes = require("./routes/messages");
+
 const cors = require("cors");
 
 const path = require("path");
@@ -25,6 +27,9 @@ app.use(express.json());
 // Routes
 // app.use(userRoutes);
 app.use("/chats", chatRoutes);
+// Routes
+
+app.use("/messages", messageRoutes);
 
 // app.use("/media", express.static("media"));
 
