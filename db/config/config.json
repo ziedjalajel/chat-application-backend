@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "0000",
+    "password": "aya123",
     "database": "chat_db",
     "host": "127.0.0.1",
     "dialect": "postgres",

@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
+let profileRouter = require ("./routes/profiles")
 
 // required Routes
 
@@ -16,6 +16,7 @@ app.use(cors());
 // Routes
 
 app.use(express.json());
+app.use("/profile", profileRouter)
 
 app.use("/media", express.static("media"));
 
