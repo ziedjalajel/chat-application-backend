@@ -1,6 +1,11 @@
 const express = require("express");
+// cors
 const cors = require("cors");
-const path = require("path");
+//path
+// const path = require("path");
+
+//Database
+const db = require("./db/models");
 
 // required Routes
 
@@ -14,10 +19,11 @@ app.use(cors());
 // passport.use(localStrategy);
 
 // Routes
+const messageRoutes = require("./routes/messages");
 
 app.use(express.json());
 
-app.use("/media", express.static("media"));
+app.use("/messages", messageRoutes);
 
 app.use("/media", express.static("media"));
 
