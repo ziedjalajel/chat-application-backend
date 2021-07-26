@@ -16,6 +16,7 @@ app.use(cors());
 // Routes
 
 app.use(express.json());
+
 app.use("/media", express.static("media"));
 
 app.use("/media", express.static("media"));
