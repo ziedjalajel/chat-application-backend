@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
+const upload = require("../middleware/multer");
+
 const {
   chatFetch,
   ChatCreate,
   chatList,
+  chatDelete,
 } = require("../controllers/chatController");
 
 router.param("chatId", async (req, res, next, chatId) => {
@@ -22,6 +25,8 @@ router.param("chatId", async (req, res, next, chatId) => {
 
 router.get("/", chatList);
 
-router.post("/", ChatCreate);
+router.post("/", upload.single("image"), ChatCreate);
+
+router.delete("/:chatId", chatDelete);
 
 module.exports = router;

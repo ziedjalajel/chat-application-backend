@@ -11,6 +11,9 @@ exports.chatFetch = async (chatId, next) => {
 
 exports.ChatCreate = async (req, res, next) => {
   try {
+    if (req.file) {
+      req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+    }
     const newChat = await Chat.create(req.body);
     res.status(201).json(newChat);
   } catch (error) {
@@ -24,6 +27,15 @@ exports.chatList = async (req, res, next) => {
       attributes: { exclude: ["createdAt", "updatedAt"] },
     });
     res.json(chats);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.chatDelete = async (req, res, next) => {
+  try {
+    await req.chat.destroy();
+    res.status(204).end();
   } catch (error) {
     next(error);
   }
