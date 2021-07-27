@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     slug: {
       type: DataTypes.STRING,
     },
+    image: {
+      type: DataTypes.STRING,
+    },
   });
 
   SequelizeSlugify.slugifyModel(Chat, {
