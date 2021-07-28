@@ -32,7 +32,7 @@ app.use("/chats", chatRoutes);
 
 app.use("/messages", messageRoutes);
 
-// app.use("/media", express.static("media"));
+app.use("/media", express.static("media"));
 
 app.use((req, res, next) => {
   const err = new Error("Path Not Found");
