@@ -8,6 +8,7 @@ const db = require("./db/models");
 const chatRoutes = require("./routes/chats");
 let profileRouter = require("./routes/profiles");
 const messageRoutes = require("./routes/messages");
+const userRoutes = require("./routes/users");
 
 const cors = require("cors");
 
@@ -18,18 +19,21 @@ const app = express();
 // Middleware
 app.use(cors());
 
-//Passport
-// app.use(passport.initialize());
-// passport.use(localStrategy);
+//passport
+const passport = require("passport");
+const { localStrategy, jwtStrategy } = require("./middleware/passport");
 
 app.use(express.json());
-app.use("/profile", profileRouter);
+
+app.use(passport.initialize()); //it must be before the routes
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 // Routes
-
+app.use("/profile", profileRouter);
 app.use("/chats", chatRoutes);
-
 app.use("/messages", messageRoutes);
+app.use(userRoutes);
 
 app.use("/media", express.static("media"));
 
