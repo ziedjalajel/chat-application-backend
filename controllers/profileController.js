@@ -10,23 +10,25 @@ const {Profile}= require("../db/models");
   }
  }
 //profileData
- exports.profileData = async(req,res,next)=>{
-    try {
-        const profiles = await Profile.findAll({
-          attributes: { exclude: ["createdAt", "updatedAt"]}}
-          );
-        res.status(200).json(profiles);
-       
-      } catch (error) {
-        next(error);
+//  exports.profileData = async(req,res,next)=>{
+//     try {
+//         const profiles = await Profile.findAll({
+//           attributes: { exclude: ["createdAt", "updatedAt"]}}
+//           );
+//         res.status(200).json(profiles);
+//       } catch (error) {
+//         next(error);
         
-      }
- }
+//       }
+//  }
+
+ exports.profileData = async (req, res) => res.json(req.profile);
+
 //Update
  exports.profileUpdate = async (req, res,next) => {
     try {
      if (req.file) {
-       req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
+       req.body.profileImage = `http://${req.get("host")}/media/${req.file.filename}`;
      }
          await req.profile.update(req.body);
          res.status(201).json(req.profile);
