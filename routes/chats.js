@@ -23,7 +23,7 @@ router.param("chatId", async (req, res, next, chatId) => {
 });
 
 router.get("/", chatList);
-
+// REVIEW: functions are camelCase, `chatCreate` not `ChatCreate`
 router.post("/", upload.single("image"), ChatCreate);
 
 router.delete("/:chatId", chatDelete);

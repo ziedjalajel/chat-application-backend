@@ -29,6 +29,8 @@ exports.messageList = async (req, res, next) => {
     next(error);
   }
 };
+
+// REVIEW: What's the message detail for?
 exports.messageDetail = async (req, res) => res.json(req.message);
 
 exports.messageDelete = async (req, res, next) => {

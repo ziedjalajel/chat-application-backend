@@ -1,30 +1,33 @@
-const  express= require("express");
-const { profileData,profileAdd,profileUpdate,fetchProfile } = require("../controllers/profileController");
+const express = require("express");
+const {
+  profileData,
+  profileAdd,
+  profileUpdate,
+  fetchProfile,
+} = require("../controllers/profileController");
 const upload = require("../middleware/multer");
 //controlers
 
-const router = express.Router()
-
+const router = express.Router();
 
 router.param("profileId", async (req, res, next, profileId) => {
   const foundProfile = await fetchProfile(profileId, next);
-  if(foundProfile) {
+  if (foundProfile) {
     req.profile = foundProfile;
-    next()
+    next();
   } else {
     next({
       status: 404,
-      message: "Profile not found"
+      message: "Profile not found",
     });
   }
-})
-
+});
 
 //route path
-router.get("/:profileId",profileData)
+router.get("/:profileId", profileData);
 // Add
-router.post("/",upload.single("profileImage"),profileAdd);
+router.post("/", upload.single("profileImage"), profileAdd);
 //update
-router.put("/:profileId",upload.single("profileImage"), profileUpdate);
+router.put("/:profileId", upload.single("profileImage"), profileUpdate);
 
-module.exports = router
+module.exports = router;
