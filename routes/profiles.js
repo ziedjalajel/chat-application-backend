@@ -21,7 +21,7 @@ router.param("profileId", async (req, res, next, profileId) => {
 
 
 //route path
-router.get("/",profileData)
+router.get("/:profileId",profileData)
 // Add
 router.post("/",upload.single("profileImage"),profileAdd);
 //update
