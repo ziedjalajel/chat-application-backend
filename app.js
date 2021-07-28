@@ -4,7 +4,7 @@ const express = require("express");
 const db = require("./db/models");
 
 //Routes
-const userRoutes = require("./routes/users");
+
 const chatRoutes = require("./routes/chats");
 let profileRouter = require("./routes/profiles");
 const messageRoutes = require("./routes/messages");
@@ -26,9 +26,8 @@ app.use(express.json());
 app.use("/profile", profileRouter);
 
 // Routes
-// app.use(userRoutes);
+
 app.use("/chats", chatRoutes);
-// Routes
 
 app.use("/messages", messageRoutes);
 
@@ -48,7 +47,6 @@ app.use((err, req, res, next) => {
 });
 
 const run = async () => {
-  // await db.sequelize.sync();
   await app.listen(8000, () => {
     console.log("The application is running on localhost:8000");
   });

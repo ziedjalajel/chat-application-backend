@@ -1,7 +1,3 @@
-const { DATE } = require("sequelize");
-const { NOW } = require("sequelize");
-const SequelizeSlugify = require("sequelize-slugify");
-
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define("Message", {
     text: {
@@ -19,9 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  // SequelizeSlugify.slugifyModel(Message, {
-  //   source: ["text"],
-  // });
-  // relations
+
   return Message;
 };
