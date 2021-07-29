@@ -10,7 +10,6 @@ module.exports = {
       },
       text: Sequelize.STRING,
       image: Sequelize.STRING,
-      emoji: Sequelize.STRING,
       time: {
         allowNull: false,
         type: Sequelize.DATE,
